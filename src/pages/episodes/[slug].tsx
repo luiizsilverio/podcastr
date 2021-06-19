@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import {  parseISO } from 'date-fns'
 
 import { api } from '../../services/api'
@@ -25,6 +26,13 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps) {  
+  
+  /* só precisa disso se fallback=true
+  const router = useRouter()
+  if (router.isFallback) {
+    return <p>Carregando...</p>
+  }*/
+
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnail}>
@@ -59,8 +67,25 @@ export default function Episode({ episode }: EpisodeProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async() => {
+  const { data } = await api.get('episodes', {
+    params: {
+      _limit: 2,
+      _sort: 'published_at',
+      _order: 'desc'
+    }
+  }) 
+  
+  // pega somente o id dos 2 últimos episódios
+  const paths = data.map(episode => {
+    return {
+      params: {
+        slug: episode.id
+      }
+    }
+  })
+
   return {
-    paths: [],
+    paths,
     fallback: 'blocking',
   }
 }

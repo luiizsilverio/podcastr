@@ -30,6 +30,7 @@ export default function Home({ latest, allEpisodes }: HomeProps) {
 
       <section className={styles.latest}>
         <h2>Últimos lançamentos</h2>
+
         <ul>
         {
           latest.map(episode => (
@@ -57,11 +58,11 @@ export default function Home({ latest, allEpisodes }: HomeProps) {
           ))
         }
         </ul>
-
       </section>
 
       <section className={styles.allEpisodes}>
         <h2>Todos os episódios</h2>
+        
         <table cellSpacing={0}>
           <thead>
             <th></th>
