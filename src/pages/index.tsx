@@ -7,6 +7,8 @@ import styles from './home.module.scss'
 import { api } from "../services/api"
 import { formatDate } from '../utils/formatDate'
 import { convertDurationToString } from "../utils/convertDurationToString"
+import { useContext } from "react"
+import { PlayterContext } from "../contexts/PlayerContext"
 
 type Episode = {  
   id: string;
@@ -25,6 +27,8 @@ type HomeProps = {
 }
 
 export default function Home({ latest, allEpisodes }: HomeProps) {
+  const player = useContext(PlayterContext)
+  
   return (
     <div className={styles.homepage}>
 
