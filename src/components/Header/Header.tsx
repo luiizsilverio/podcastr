@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 import { formatDate } from '../../utils/formatDate'
 
-export function Header() {  
+export default function Header() {  
   const currentDate = formatDate(new Date())
 
   return (
@@ -12,4 +12,3 @@ export function Header() {
     </header>
   )
 }
-
