@@ -8,7 +8,7 @@ import { api } from "../services/api"
 import { formatDate } from '../utils/formatDate'
 import { convertDurationToString } from "../utils/convertDurationToString"
 import { useContext } from "react"
-import { PlayterContext } from "../contexts/PlayerContext"
+import { PlayerContext } from "../contexts/PlayerContext"
 
 type Episode = {  
   id: string;
@@ -27,7 +27,7 @@ type HomeProps = {
 }
 
 export default function Home({ latest, allEpisodes }: HomeProps) {
-  const player = useContext(PlayterContext)
+  const { play } = useContext(PlayerContext)
   
   return (
     <div className={styles.homepage}>
@@ -55,8 +55,8 @@ export default function Home({ latest, allEpisodes }: HomeProps) {
                 <span>{ episode.durationAsString }</span>
               </div>
 
-              <button type="button">
-                <img src="/play-green.svg" alt="Tocar episódio" title="Tocar" />
+              <button type="button" onClick={() => play(episode)} >
+                <img src="/play-green.svg" alt="Tocar episódio" title="Tocar" />                
               </button>
             </li>
           ))
