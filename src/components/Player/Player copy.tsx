@@ -22,7 +22,8 @@ export default function Player() {
     toggleShuffle,
     playNext,
     playPrevious,
-    setPlayingState,
+    setPlayerState,
+    clearPlayerState,
     hasNext,
     hasPrevious
    } = usePlayer()
@@ -35,6 +36,19 @@ export default function Player() {
     audioRef.current.addEventListener('timeupdate', () => {
       setProgress(Math.floor(audioRef.current.currentTime))
     })
+  }
+
+  function handleSeek(amount: number) {
+    audioRef.current.currentTime = amount
+    setProgress(amount)
+  }
+
+  function handleEpisodeEnded() {
+    if (hasNext) {
+      playNext()
+    } else {
+      clearPlayerState()
+    }
   }
 
   useEffect(() => {
@@ -74,6 +88,9 @@ export default function Player() {
           <div className={styles.slider}>
             { episode ? (
               <Slider 
+                max={episode.duration}
+                value={progress}
+                onChange={handleSeek}
                 trackStyle={{backgroundColor: '#84d361'}}
                 railStyle={{backgroundColor: '#9f75ff'}}
                 handleStyle={{backgroundColor: '#84d361'}}               
@@ -91,8 +108,10 @@ export default function Player() {
             ref={ audioRef }
             autoPlay
             loop={isLooping}
-            onPlay={() => setPlayingState(true)}
-            onPause={() => setPlayingState(false)}
+            onEnded={handleEpisodeEnded}
+            onPlay={() => setPlayerState(true)}
+            onPause={() => setPlayerState(false)}
+            onLoadedMetadata={setupProgressListener}
           />
         )}
 

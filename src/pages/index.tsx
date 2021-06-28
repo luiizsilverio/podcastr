@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next"
 import Image from 'next/image'
 import Link from 'next/link'
+import Head from "next/head"
 import { parseISO } from 'date-fns'
 
 import styles from './home.module.scss'
@@ -34,6 +35,10 @@ export default function Home({ latest, allEpisodes }: HomeProps) {
   return (
     <div className={styles.homepage}>
 
+      <Head>
+        <title>Home | Podcastr</title>
+      </Head>
+      
       <section className={styles.latest}>
         <h2>Últimos lançamentos</h2>
 
@@ -73,12 +78,14 @@ export default function Home({ latest, allEpisodes }: HomeProps) {
         
         <table cellSpacing={0}>
           <thead>
-            <th></th>
-            <th>Podcast</th>
-            <th>Integrantes</th>
-            <th>Data</th>
-            <th>Duração</th>
-            <th></th>
+            <tr>
+              <th></th>
+              <th>Podcast</th>
+              <th>Integrantes</th>
+              <th>Data</th>
+              <th>Duração</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
           {

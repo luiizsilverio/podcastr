@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { parseISO } from 'date-fns'
 
@@ -64,6 +65,9 @@ export default function Episode({ episode }: EpisodeProps) {
         dangerouslySetInnerHTML={{ __html: episode.description }}      
       />      
       
+      <Head>
+        <title>{episode.title} | Podcastr</title>
+      </Head>
     </div>
   )
 }

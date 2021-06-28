@@ -1,13 +1,13 @@
 import Header from "../components/Header/Header"
-import Player from "../components/Player/Player"
+import Player from "../components/Player"
 
 import '../styles/global.scss'
 import styles from '../styles/app.module.scss'
-import { PlayterContextProvider } from "../contexts/PlayerContext"
+import { PlayerContextProvider } from "../contexts/PlayerContext"
 
 function MyApp({ Component, pageProps }) {
   return (    
-    <PlayterContextProvider>
+    <PlayerContextProvider>
       <div className={styles.wrapper}>
         <main>
           <Header />
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         </main>
         <Player />
       </div>    
-    </PlayterContextProvider>
+    </PlayerContextProvider>
   )
 }
 
