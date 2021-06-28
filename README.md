@@ -8,7 +8,7 @@
 * [Contato](#email-contato)
 
 ## Sobre o projeto
-Aplicação que disponibiliza podcasts sobre tecnologia.<br />
+Aplicação desenvolvida em React / Next para o NLW 06 da Rocketseat, que disponibiliza podcasts sobre tecnologia, para serem ouvidos na sequência ou ordem aleatória.<br />
 Uso de uma API fake com uma seleção de podcasts.<br />
 Uso de contextos, controle de Slider através do hook __useRef__.<br />
 Uso de __SSG__, através de __getStaticProps__ e __getStaticPaths__.
