@@ -2,12 +2,13 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import {  parseISO } from 'date-fns'
+import { parseISO } from 'date-fns'
 
 import { api } from '../../services/api'
 import { formatDate } from '../../utils/formatDate'
 import { convertDurationToString } from "../../utils/convertDurationToString"
 import styles from './episode.module.scss'
+import { usePlayer } from '../../contexts/PlayerContext'
 
 type Episode = {  
   id: string;
@@ -26,6 +27,7 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps) {  
+  const { play } = usePlayer()
   
   /* só precisa disso se fallback=true
   const router = useRouter()
@@ -46,7 +48,7 @@ export default function Episode({ episode }: EpisodeProps) {
           src={episode.thumbnail}
           objectFit="cover"
         />
-        <button type="button">
+        <button type="button" onClick={() => play(episode)}>
           <img src="/play.svg" alt="Tocar episódio" />
         </button>
       </div>    
