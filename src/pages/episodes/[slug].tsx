@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const episode = {
     ...data,
     publishedAt: formatDate(parseISO(data.published_at)),
-    duration: Number(data.duration),
+    duration: Number(data.file.duration),
     durationAsString: convertDurationToString(Number(data.file.duration)),
     url: data.file.url,
   }
