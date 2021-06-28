@@ -1,18 +1,16 @@
-import Image from 'next/image';
-import { useRef, useEffect, useState } from 'react';
-import Slider from 'rc-slider';
+import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 
-import 'rc-slider/assets/index.css';
+import styles from './styles.module.scss'
+import { usePlayer } from '../../contexts/PlayerContext'
+import { convertDurationToString } from '../../utils/convertDurationToString'
 
-import { usePlayer } from '../../contexts/PlayerContext';
-
-import styles from './styles.module.scss';
-import { convertDurationToString } from '../../utils/convertDurationToString';
-
-export default function Player() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [progress, setProgress] = useState(0);
-
+export default function Player() {  
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [progress, setProgress] = useState(0)
+  
   const { 
     episodeList, 
     currentEpisodeIndex, 
@@ -22,37 +20,27 @@ export default function Player() {
     togglePlay,
     toggleLoop,
     toggleShuffle,
-    setPlayerState,
     playNext,
     playPrevious,
+    setPlayerState,
+    clearPlayerState,
     hasNext,
-    hasPrevious,
-    clearPlayerState
-  } = usePlayer();
+    hasPrevious
+   } = usePlayer()
 
-  useEffect(() => {
-    if (!audioRef.current) {
-      return;
-    }
-
-    if (isPlaying) {
-      audioRef.current.play();
-    } else {
-      audioRef.current.pause();
-    }
-  }, [isPlaying])
+  const episode = episodeList[currentEpisodeIndex]
 
   function setupProgressListener() {
-    audioRef.current.currentTime = 0;
+    audioRef.current.currentTime = 0
 
     audioRef.current.addEventListener('timeupdate', () => {
-      setProgress(Math.floor(audioRef.current.currentTime));
-    });
+      setProgress(Math.floor(audioRef.current.currentTime))
+    })
   }
 
   function handleSeek(amount: number) {
-    audioRef.current.currentTime = amount;
-    setProgress(amount);
+    audioRef.current.currentTime = amount
+    setProgress(amount)
   }
 
   function handleEpisodeEnded() {
@@ -63,8 +51,14 @@ export default function Player() {
     }
   }
 
-  const episode = episodeList[currentEpisodeIndex]
-
+  useEffect(() => {
+    if (audioRef.current) {
+      isPlaying
+        ? audioRef.current.play()
+        : audioRef.current.pause()
+    }
+  }, [isPlaying])
+  
   return (
     <div className={styles.playerContainer}>
       <header>
@@ -74,14 +68,13 @@ export default function Player() {
 
       { episode ? (
         <div className={styles.currentEpisode}>
-          <Image
-            width={592}
-            height={592}
-            src={episode.thumbnail}
-            objectFit="cover"
+          <Image 
+            width={592} height={592}
+            src={ episode.thumbnail } 
+            objectFit="cover" 
           />
-          <strong>{episode.title}</strong>
-          <span>{episode.members}</span>
+          <strong>{ episode.title }</strong>
+          <span>{ episode.members }</span>
         </div>
       ) : (
         <div className={styles.emptyPlayer}>
@@ -94,13 +87,13 @@ export default function Player() {
           <span>{convertDurationToString(progress)}</span>
           <div className={styles.slider}>
             { episode ? (
-              <Slider
+              <Slider 
                 max={episode.duration}
                 value={progress}
                 onChange={handleSeek}
-                trackStyle={{ backgroundColor: '#04d361' }}
-                railStyle={{ backgroundColor: '#9f75ff' }}
-                handleStyle={{ borderColor: '#04d361', borderWidth: 4 }}
+                trackStyle={{backgroundColor: '#84d361'}}
+                railStyle={{backgroundColor: '#9f75ff'}}
+                handleStyle={{backgroundColor: '#84d361'}}               
               />
             ) : (
               <div className={styles.emptySlider} />
@@ -110,11 +103,11 @@ export default function Player() {
         </div>
 
         { episode && (
-          <audio
-            src={episode.url}
-            ref={audioRef}
-            loop={isLooping}
+          <audio 
+            src={ episode.url }
+            ref={ audioRef }
             autoPlay
+            loop={isLooping}
             onEnded={handleEpisodeEnded}
             onPlay={() => setPlayerState(true)}
             onPause={() => setPlayerState(false)}
@@ -123,32 +116,39 @@ export default function Player() {
         )}
 
         <div className={styles.buttons}>
-          <button
-            type="button"
+          <button 
+            type="button" 
             disabled={!episode || episodeList.length === 1}
             onClick={toggleShuffle}
             className={isShuffling ? styles.isActive : ''}
           >
-            <img src="/shuffle.svg" alt="Embaralhar" />
+            <img src="/shuffle.svg" alt="Embaralhar" 
+          />
           </button>
-          <button type="button" onClick={playPrevious} disabled={!episode || !hasPrevious}>
+          <button type="button" 
+            disabled={!episode || !hasPrevious}
+            onClick={playPrevious}
+          >
             <img src="/play-previous.svg" alt="Tocar anterior" />
           </button>
-          <button
-            type="button"
+          <button type="button" 
             className={styles.playButton}
             disabled={!episode}
             onClick={togglePlay}
           >
-            { isPlaying
-              ? <img src="/pause.svg" alt="Tocar" />
-              : <img src="/play.svg" alt="Tocar" /> }
+            { !isPlaying
+              ? <img src="/play.svg" alt="Tocar" />
+              : <img src="/pause.svg" alt="Pausar" />
+            }
           </button>
-          <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
+          <button type="button" 
+            disabled={!episode || !hasNext}
+            onClick={playNext}
+          >
             <img src="/play-next.svg" alt="Tocar próxima" />
           </button>
-         <button
-            type="button"
+          <button 
+            type="button" 
             disabled={!episode}
             onClick={toggleLoop}
             className={isLooping ? styles.isActive : ''}
@@ -158,5 +158,5 @@ export default function Player() {
         </div>
       </footer>
     </div>
-  );
+  )
 }

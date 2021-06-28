@@ -138,7 +138,7 @@ export const getStaticProps: GetStaticProps = async() => {
     return {
       ...episode,
       publishedAt: formatDate(parseISO(episode.published_at)),
-      duration: Number(episode.duration),
+      duration: Number(episode.file.duration),
       durationAsString: convertDurationToString(Number(episode.file.duration)),
       url: episode.file.url,
     }
@@ -152,6 +152,6 @@ export const getStaticProps: GetStaticProps = async() => {
       latest,
       allEpisodes
     },
-    revalidate: 60 //revalidate: 60 * 60 * 8,
+    revalidate: 60 * 60 * 8,
   }
 }
