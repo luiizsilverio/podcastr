@@ -9,9 +9,9 @@
 
 ## Sobre o projeto
 Aplicação que disponibiliza podcasts sobre tecnologia.<br />
-Uso de uma API fake com uma seleção de podcasts.
+Uso de uma API fake com uma seleção de podcasts.<br />
 Uso de contextos, controle de Slider através do hook __useRef__.<br />
-Uso de __SSG__, através de __getStaticProps__ e __getStaticPaths_.
+Uso de __SSG__, através de __getStaticProps__ e __getStaticPaths__.
  
 ## :hammer_and_wrench: Tecnologias
 * <ins>ReactJs</ins>
@@ -22,8 +22,8 @@ Uso de __SSG__, através de __getStaticProps__ e __getStaticPaths_.
 * <ins>Axios</ins>
 
 ## :camera_flash: Screenshots
-![](https://github.com/luiizsilverio/podcastr/blob/main/public/images/screenshots/tela1.png)
-(https://github.com/luiizsilverio/podcastr/blob/main/public/images/screenshots/tela2.png)
+![](https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/tela1.png)
+(https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/tela2.png)
 
 ## :car: Iniciando o projeto
 ```bash
