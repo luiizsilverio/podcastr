@@ -23,6 +23,7 @@ Uso de __SSG__, através de __getStaticProps__ e __getStaticPaths__.
 
 ## :camera_flash: Screenshots
 ![](https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/tela1.png)
+![]
 (https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/tela2.png)
 
 ## :car: Iniciando o projeto
