@@ -22,8 +22,7 @@ Uso de __SSG__, através de __getStaticProps__ e __getStaticPaths__.
 * <ins>Axios</ins>
 
 ## :camera_flash: Screenshots
-![](https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/tela1.png)
-![](https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/tela2.png)
+![](https://github.com/luiizsilverio/podcastr/blob/master/public/screenshots/podcastr.gif)
 
 
 ## :car: Iniciando o projeto
