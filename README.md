@@ -1,7 +1,8 @@
 <table>
   <tr>
-    <td><img src="https://github.com/luiizsilverio/podcastr/blob/master/public/logo.svg" /></td>
-    <td><h1>Podcastr</h1></td>
+    <td>
+      <img src="https://github.com/luiizsilverio/podcastr/blob/master/public/logo.svg" />
+    </td>    
   </tr>
 </table>
 
