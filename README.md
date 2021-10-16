@@ -1,4 +1,10 @@
-# Podcastr
+<table>
+  <tr>
+    <td><img src="https://github.com/luiizsilverio/podcastr/blob/master/public/logo.svg" /></td>
+    <td><h1>Podcastr</h1></td>
+  </tr>
+</table>
+
 ## Conteúdo
 * [Sobre o Projeto](#sobre-o-projeto)
 * [Tecnologias](#hammer_and_wrench-tecnologias)
